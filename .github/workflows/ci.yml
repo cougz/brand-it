@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [main]
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   lint:
     name: Lint
@@ -17,7 +20,7 @@ jobs:
           version: 10
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: pnpm
       - run: pnpm install --ignore-scripts
       - run: pnpm lint
@@ -32,9 +35,11 @@ jobs:
           version: 10
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: pnpm
       - run: pnpm install --ignore-scripts
+      # brand-vars.ts is gitignored (generated) — compile before tsc
+      - run: pnpm templates:compile
       - run: pnpm typecheck
 
   validate:
@@ -47,7 +52,7 @@ jobs:
           version: 10
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: pnpm
       - run: pnpm install --ignore-scripts
       - run: pnpm templates:compile
@@ -64,7 +69,7 @@ jobs:
           version: 10
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: pnpm
       - run: pnpm install --ignore-scripts
       - run: pnpm templates:compile
