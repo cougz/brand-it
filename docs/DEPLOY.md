@@ -2,12 +2,19 @@
 
 ## Overview
 
-Brand-It uses two automated pipelines on every push:
+Brand-It mirrors to two remotes. `git push` (i.e. push to `origin`) writes to both simultaneously:
 
-| Pipeline | Trigger | Purpose |
+| Remote | URL | Purpose |
 |---|---|---|
-| **GitLab CI** (`.gitlab-ci.yml`) | Every push to any branch | Lint, typecheck, tests, template validators. Quality gate. |
-| **Cloudflare Workers Builds** | Push to `main` (production), feature branches (preview URLs) | Build + deploy the Worker. |
+| **GitLab** (`origin` fetch) | `git@gitlab.cfdata.org:tim.seiffert/brand-it.git` | Source of truth, internal |
+| **GitHub** (`origin` push + `github`) | `git@github.com:cougz/brand-it.git` | Workers Builds integration source |
+
+Two CI pipelines run on every push:
+
+| Pipeline | Source | Trigger | Purpose |
+|---|---|---|---|
+| **GitHub Actions** (`.github/workflows/ci.yml`) | GitHub | Every push | Lint, typecheck, template validators, build. Quality gate. |
+| **Cloudflare Workers Builds** | GitHub `main` + branches | Push to GitHub | Build + deploy the Worker. Production on `main`; preview URLs on feature branches. |
 
 ## Local development
 
@@ -27,7 +34,7 @@ pnpm build                # Vite production build
 ## Workers Builds setup (one-time, Tim only)
 
 1. Cloudflare dashboard → account `9c0e55ad8906a05169a1259400c71e5b`
-2. **Workers & Pages → Connect to Git → GitLab → Authorise → select `tim.seiffert/brand-it`**
+2. **Workers & Pages → Connect to Git → GitHub → Authorise → select `cougz/brand-it`**
 3. Build configuration:
    - Build command: `pnpm install && pnpm templates:compile && pnpm build`
    - Deploy command: `pnpm wrangler deploy`
@@ -35,6 +42,8 @@ pnpm build                # Vite production build
    - Node version: 20
 
 After this, every push to `main` deploys automatically (<60s). Feature branches get preview URLs.
+
+> **Push workflow:** always use `git push` (which pushes to both GitLab and GitHub via the multi-push origin). Never push to `github` remote alone — GitLab must stay in sync.
 
 ## Cloudflare Access (Week 2, before public access)
 
