@@ -9,6 +9,11 @@ export default defineConfig({
     }),
     tanstackStart({
       target: "cloudflare-workers",
+      srcDirectory: "app",
+      router: {
+        routesDirectory: "app/routes",
+        generatedRouteTree: "app/routeTree.gen.ts",
+      },
     }),
   ],
 });
