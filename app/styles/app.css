@@ -1,0 +1,94 @@
+/* ============================================================
+   Brand-It — Main stylesheet
+   Import order matters: tokens → base → Tailwind theme
+   ============================================================ */
+
+@import "./tokens.css";
+@import "./base.css";
+
+/* ── Tailwind v4 — declare theme tokens ─────────────────────
+   Maps CSS custom properties to Tailwind utility classes.
+   No tailwind.config.js — all config lives here.
+   ─────────────────────────────────────────────────────────── */
+@import "tailwindcss";
+
+@theme {
+  /* Colours */
+  --color-cf-orange: var(--cf-orange);
+  --color-cf-orange-hover: var(--cf-orange-hover);
+  --color-cf-orange-light: var(--cf-orange-light);
+
+  --color-cf-text: var(--cf-text);
+  --color-cf-text-muted: var(--cf-text-muted);
+  --color-cf-text-subtle: var(--cf-text-subtle);
+
+  --color-cf-bg-page: var(--cf-bg-page);
+  --color-cf-bg-100: var(--cf-bg-100);
+  --color-cf-bg-200: var(--cf-bg-200);
+  --color-cf-bg-300: var(--cf-bg-300);
+
+  --color-cf-border: var(--cf-border);
+  --color-cf-border-light: var(--cf-border-light);
+
+  --color-cf-success: var(--cf-success);
+  --color-cf-warning: var(--cf-warning);
+  --color-cf-error: var(--cf-error);
+
+  /* Fonts */
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+
+  /* Border radii */
+  --radius-pill: var(--radius-pill);
+  --radius-card: var(--radius-card);
+  --radius-input: var(--radius-input);
+  --radius-hero: var(--radius-hero);
+
+  /* Shadows */
+  --shadow-card: var(--shadow-card);
+  --shadow-focus: var(--shadow-focus);
+  --shadow-popover: var(--shadow-popover);
+}
+
+/* ── Self-hosted fonts ─────────────────────────────────────── */
+/* Placeholder @font-face declarations.
+   Replace src with real .woff2 paths when Brand team delivers files. */
+@font-face {
+  font-family: "FT Kunst Grotesk";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("/fonts/ft-kunst-grotesk-400.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "FT Kunst Grotesk";
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src: url("/fonts/ft-kunst-grotesk-500.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Apercu Mono Pro";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("/fonts/apercu-mono-pro-400.woff2") format("woff2");
+}
+
+/* ── A4/Letter canvas sizes (used in Template.tsx) ─────────── */
+.a4-portrait {
+  width: 794px;
+  min-height: 1123px;
+}
+
+.a4-landscape {
+  width: 1123px;
+  min-height: 794px;
+}
+
+.letter-portrait {
+  width: 816px;
+  min-height: 1056px;
+}

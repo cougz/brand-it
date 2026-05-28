@@ -1,0 +1,54 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "brand-it",
+  "compatibility_date": "2026-04-03",
+  "compatibility_flags": ["nodejs_compat"],
+  "main": ".output/server/index.js",
+  "assets": {
+    "directory": ".output/public",
+    "binding": "ASSETS"
+  },
+  "observability": {
+    "enabled": true,
+    "logs": { "enabled": true, "invocation_logs": true },
+    "traces": { "enabled": true }
+  },
+  "upload_source_maps": true,
+
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "brand-it-db",
+      "database_id": "939c14e5-bef0-4cf1-b506-e33454bec213"
+    }
+  ],
+  "r2_buckets": [
+    { "binding": "ASSETS_BUCKET", "bucket_name": "brand-it-assets" },
+    { "binding": "EXPORTS", "bucket_name": "brand-it-exports" }
+  ],
+  "kv_namespaces": [{ "binding": "CACHE", "id": "56186b2694674870a25f033a672a2239" }],
+  "ai": {
+    "binding": "AI"
+    // TODO: add gateway once created in dashboard:
+    // "gateway": { "id": "brand-it" }
+  },
+  "queues": {
+    "producers": [{ "binding": "EXPORT_QUEUE", "queue": "brand-it-export" }]
+  },
+  "analytics_engine_datasets": [{ "binding": "EVENTS", "dataset": "brand-it-events" }],
+  "durable_objects": {
+    "bindings": [
+      { "name": "PARTNER_SESSION", "class_name": "PartnerSession" },
+      { "name": "EDITOR_SESSION", "class_name": "EditorSession" }
+    ]
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["PartnerSession", "EditorSession"] }],
+  // TODO: add flagship binding when app_id issued by Flagship team:
+  // "flagship": [{ "binding": "FLAGS", "app_id": "TODO" }],
+  "vars": {
+    "RENDERER_VERSION": "1"
+  },
+  "triggers": {
+    "crons": ["0 0 1 * *"]
+  }
+}

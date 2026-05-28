@@ -1,0 +1,88 @@
+default:
+  image: node:20-slim
+  before_script:
+    - corepack enable
+    - pnpm install --frozen-lockfile
+
+stages:
+  - quality
+  - validate
+  - build
+
+variables:
+  PNPM_VERSION: "10"
+
+# ── Lint ──────────────────────────────────────────────────────
+lint:
+  stage: quality
+  script:
+    - pnpm lint
+  cache:
+    key:
+      files:
+        - pnpm-lock.yaml
+    paths:
+      - node_modules/
+
+# ── Typecheck ─────────────────────────────────────────────────
+typecheck:
+  stage: quality
+  script:
+    - pnpm typecheck
+  cache:
+    key:
+      files:
+        - pnpm-lock.yaml
+    paths:
+      - node_modules/
+
+# ── Unit tests ────────────────────────────────────────────────
+test:
+  stage: quality
+  script:
+    - pnpm test
+  cache:
+    key:
+      files:
+        - pnpm-lock.yaml
+    paths:
+      - node_modules/
+
+# ── Template compiler + contract validation ───────────────────
+validate:
+  stage: validate
+  script:
+    - pnpm templates:compile
+    - pnpm templates:validate
+  cache:
+    key:
+      files:
+        - pnpm-lock.yaml
+    paths:
+      - node_modules/
+  artifacts:
+    when: on_failure
+    paths:
+      - templates/**/brand-vars.ts
+    expire_in: 1 day
+
+# ── Vite build ────────────────────────────────────────────────
+build:
+  stage: build
+  needs:
+    - lint
+    - typecheck
+    - validate
+  script:
+    - pnpm templates:compile
+    - pnpm build
+  cache:
+    key:
+      files:
+        - pnpm-lock.yaml
+    paths:
+      - node_modules/
+  artifacts:
+    paths:
+      - .output/
+    expire_in: 1 hour

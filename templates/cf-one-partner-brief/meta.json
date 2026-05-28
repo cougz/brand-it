@@ -1,0 +1,9 @@
+{
+  "title": "Cloudflare One Partner Brief",
+  "description": "A co-branded one-pager introducing Cloudflare One Zero Trust to end customers. Partners customise headline, body copy, and contact details.",
+  "type": "one-pager",
+  "tags": ["cloudflare-one", "zero-trust", "sase", "partner"],
+  "defaultLanguage": "en",
+  "size": "A4",
+  "orientation": "portrait"
+}
