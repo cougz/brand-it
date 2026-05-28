@@ -10,6 +10,16 @@ export default defineConfig({
       "~": resolve(import.meta.dirname, "app"),
     },
   },
+  environments: {
+    // "ssr" is TanStack Start's server environment name (START_ENVIRONMENT_NAMES.server).
+    // noExternal: true ensures every npm dependency is bundled into server.js —
+    // Cloudflare Workers has no node_modules at runtime.
+    ssr: {
+      resolve: {
+        noExternal: true,
+      },
+    },
+  },
   plugins: [
     tailwindcss(),
     tanstackStart({

@@ -32,13 +32,16 @@
     "producers": [{ "binding": "EXPORT_QUEUE", "queue": "brand-it-export" }]
   },
   "analytics_engine_datasets": [{ "binding": "EVENTS", "dataset": "brand-it-events" }],
-  "durable_objects": {
-    "bindings": [
-      { "name": "PARTNER_SESSION", "class_name": "PartnerSession" },
-      { "name": "EDITOR_SESSION", "class_name": "EditorSession" }
-    ]
-  },
-  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["PartnerSession", "EditorSession"] }],
+  // Durable Objects re-added in Week 3 when PartnerSession + EditorSession are implemented.
+  // "durable_objects": {
+  //   "bindings": [
+  //     { "name": "PARTNER_SESSION", "class_name": "PartnerSession" },
+  //     { "name": "EDITOR_SESSION",  "class_name": "EditorSession"  }
+  //   ]
+  // },
+  // "migrations": [
+  //   { "tag": "v1", "new_sqlite_classes": ["PartnerSession", "EditorSession"] }
+  // ],
   // TODO: add flagship binding when app_id issued by Flagship team:
   // "flagship": [{ "binding": "FLAGS", "app_id": "TODO" }],
   "vars": {
