@@ -4,7 +4,7 @@ export const Route = createFileRoute("/")({
   beforeLoad: () => {
     // Redirect to /library once auth + brand-kit land (Week 2).
     // For now, redirect to /_dev/components as the visual baseline.
-    throw redirect({ to: "/_dev/components" });
+    throw redirect({ to: "/components" as string });
   },
   component: () => null,
 });

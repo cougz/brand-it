@@ -27,6 +27,7 @@
     "@biomejs/biome": "^2.0.0",
     "@cloudflare/vite-plugin": "^1.39.0",
     "@cloudflare/workers-types": "^4.20250525.0",
+    "@tailwindcss/vite": "^4.3.0",
     "@tanstack/router-devtools": "^1.167.0",
     "@tanstack/start-vite-plugin": "^1.91.1",
     "@types/node": "^25.9.1",
@@ -40,6 +41,10 @@
     "wrangler": "^4.95.0"
   },
   "pnpm": {
-    "onlyBuiltDependencies": ["esbuild", "sharp", "workerd"]
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp",
+      "workerd"
+    ]
   }
 }
