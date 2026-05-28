@@ -1,0 +1,46 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build output
+dist/
+build/
+.output/
+.tanstack/
+.wrangler/
+
+# Generated template artifacts (regenerated from content.md by scripts/compile-templates.ts)
+templates/**/brand-vars.ts
+
+# Environment
+.env
+.env.local
+.env.*.local
+.dev.vars
+
+# Editor / OS
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Cloudflare
+.wrangler/
+worker-configuration.d.ts
+
+# Misc
+*.tsbuildinfo
