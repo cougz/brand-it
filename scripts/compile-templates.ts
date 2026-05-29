@@ -72,9 +72,6 @@ function zodSchemaForField(field: FieldDef): string {
         parts.push("z.string()");
       }
       break;
-    case "text":
-    case "string":
-    case "image":
     default:
       parts.push("z.string()");
       if (field.maxLength) {
