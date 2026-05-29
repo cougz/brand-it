@@ -7,6 +7,13 @@ interface CardProps extends ComponentPropsWithoutRef<"div"> {
   /** Remove the auto-injected corner brackets. Default: false. */
   noBrackets?: boolean;
   padding?: "none" | "sm" | "md" | "lg";
+  /**
+   * Background colour the card sits on — used to fill the corner bracket
+   * squares so they blend with the surface behind the card.
+   * Defaults to var(--cf-bg-page) (the outermost page background).
+   * Pass var(--cf-bg-100) when this card is nested inside another card body.
+   */
+  bracketBg?: string;
 }
 
 const paddingClasses = {
@@ -27,6 +34,7 @@ export function Card({
   interactive = false,
   noBrackets = false,
   padding = "md",
+  bracketBg = "var(--cf-bg-page)",
   className = "",
   ...props
 }: CardProps) {
@@ -43,44 +51,31 @@ export function Card({
         .join(" ")}
       {...props}
     >
-      {!noBrackets && <CornerBrackets />}
+      {!noBrackets && <CornerBrackets bg={bracketBg} />}
       {children}
     </div>
   );
 }
 
-/**
- * Four 8×8 px rounded squares at the outer corners of the card.
- * Each is positioned absolute with -4px offset from each corner edge.
- */
-function CornerBrackets() {
+/** Four 8×8 px corner-bracket squares positioned at -4px from each card corner. */
+function CornerBrackets({ bg }: { bg: string }) {
+  const style: React.CSSProperties = {
+    position: "absolute",
+    width: 8,
+    height: 8,
+    borderRadius: 1.5,
+    border: "1px solid var(--cf-border)",
+    background: bg,
+    pointerEvents: "none",
+    zIndex: 1,
+  };
+
   return (
     <>
-      {/* top-left */}
-      <span className="bracket bracket-tl" aria-hidden="true" />
-      {/* top-right */}
-      <span className="bracket bracket-tr" aria-hidden="true" />
-      {/* bottom-left */}
-      <span className="bracket bracket-bl" aria-hidden="true" />
-      {/* bottom-right */}
-      <span className="bracket bracket-br" aria-hidden="true" />
-
-      <style>{`
-        .bracket {
-          position: absolute;
-          width: 8px;
-          height: 8px;
-          border-radius: 1.5px;
-          border: 1px solid var(--cf-border);
-          background: var(--cf-bg-100);
-          pointer-events: none;
-          z-index: 1;
-        }
-        .bracket-tl { top: -4px; left: -4px; }
-        .bracket-tr { top: -4px; right: -4px; }
-        .bracket-bl { bottom: -4px; left: -4px; }
-        .bracket-br { bottom: -4px; right: -4px; }
-      `}</style>
+      <span aria-hidden="true" style={{ ...style, top: -4, left: -4 }} />
+      <span aria-hidden="true" style={{ ...style, top: -4, right: -4 }} />
+      <span aria-hidden="true" style={{ ...style, bottom: -4, left: -4 }} />
+      <span aria-hidden="true" style={{ ...style, bottom: -4, right: -4 }} />
     </>
   );
 }

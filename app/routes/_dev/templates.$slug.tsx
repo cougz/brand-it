@@ -28,19 +28,19 @@ function TemplatePreviewPage() {
       {/* Bordered container with corner brackets */}
       <div className="relative border border-cf-border rounded-card shadow-card overflow-hidden">
         <span
-          className="absolute -top-1 -left-1 h-2 w-2 rounded-[1.5px] border border-cf-border bg-cf-bg-100 z-10"
+          className="absolute -top-1 -left-1 h-2 w-2 rounded-[1.5px] border border-cf-border bg-cf-bg-page z-10"
           aria-hidden="true"
         />
         <span
-          className="absolute -top-1 -right-1 h-2 w-2 rounded-[1.5px] border border-cf-border bg-cf-bg-100 z-10"
+          className="absolute -top-1 -right-1 h-2 w-2 rounded-[1.5px] border border-cf-border bg-cf-bg-page z-10"
           aria-hidden="true"
         />
         <span
-          className="absolute -bottom-1 -left-1 h-2 w-2 rounded-[1.5px] border border-cf-border bg-cf-bg-100 z-10"
+          className="absolute -bottom-1 -left-1 h-2 w-2 rounded-[1.5px] border border-cf-border bg-cf-bg-page z-10"
           aria-hidden="true"
         />
         <span
-          className="absolute -bottom-1 -right-1 h-2 w-2 rounded-[1.5px] border border-cf-border bg-cf-bg-100 z-10"
+          className="absolute -bottom-1 -right-1 h-2 w-2 rounded-[1.5px] border border-cf-border bg-cf-bg-page z-10"
           aria-hidden="true"
         />
 

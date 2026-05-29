@@ -144,22 +144,22 @@ export default function Template({ vars }: { vars: BrandVars }) {
             {/* Corner brackets */}
             <span
               className="absolute -top-1 -left-1 h-2 w-2 rounded-[1.5px]"
-              style={{ border: "1px solid var(--cf-border)", background: "var(--cf-bg-100)" }}
+              style={{ border: "1px solid var(--cf-border)", background: "var(--cf-bg-100)"/* template body */ }}
               aria-hidden="true"
             />
             <span
               className="absolute -top-1 -right-1 h-2 w-2 rounded-[1.5px]"
-              style={{ border: "1px solid var(--cf-border)", background: "var(--cf-bg-100)" }}
+              style={{ border: "1px solid var(--cf-border)", background: "var(--cf-bg-100)"/* template body */ }}
               aria-hidden="true"
             />
             <span
               className="absolute -bottom-1 -left-1 h-2 w-2 rounded-[1.5px]"
-              style={{ border: "1px solid var(--cf-border)", background: "var(--cf-bg-100)" }}
+              style={{ border: "1px solid var(--cf-border)", background: "var(--cf-bg-100)"/* template body */ }}
               aria-hidden="true"
             />
             <span
               className="absolute -bottom-1 -right-1 h-2 w-2 rounded-[1.5px]"
-              style={{ border: "1px solid var(--cf-border)", background: "var(--cf-bg-100)" }}
+              style={{ border: "1px solid var(--cf-border)", background: "var(--cf-bg-100)"/* template body */ }}
               aria-hidden="true"
             />
 

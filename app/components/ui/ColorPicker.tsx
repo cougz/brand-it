@@ -35,19 +35,19 @@ export function ColorPicker({ value, onChange, label }: ColorPickerProps) {
         >
           {/* Corner brackets on the swatch */}
           <span
-            className="absolute -top-1 -left-1 h-2 w-2 rounded-[1.5px] border border-cf-border bg-cf-bg-100"
+            className="absolute -top-1 -left-1 h-2 w-2 rounded-[1.5px] border border-cf-border bg-cf-bg-page"
             aria-hidden="true"
           />
           <span
-            className="absolute -top-1 -right-1 h-2 w-2 rounded-[1.5px] border border-cf-border bg-cf-bg-100"
+            className="absolute -top-1 -right-1 h-2 w-2 rounded-[1.5px] border border-cf-border bg-cf-bg-page"
             aria-hidden="true"
           />
           <span
-            className="absolute -bottom-1 -left-1 h-2 w-2 rounded-[1.5px] border border-cf-border bg-cf-bg-100"
+            className="absolute -bottom-1 -left-1 h-2 w-2 rounded-[1.5px] border border-cf-border bg-cf-bg-page"
             aria-hidden="true"
           />
           <span
-            className="absolute -bottom-1 -right-1 h-2 w-2 rounded-[1.5px] border border-cf-border bg-cf-bg-100"
+            className="absolute -bottom-1 -right-1 h-2 w-2 rounded-[1.5px] border border-cf-border bg-cf-bg-page"
             aria-hidden="true"
           />
         </button>
