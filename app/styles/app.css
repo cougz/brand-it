@@ -51,8 +51,11 @@
 }
 
 /* ── Self-hosted fonts ─────────────────────────────────────── */
-/* Placeholder @font-face declarations.
-   Replace src with real .woff2 paths when Brand team delivers files. */
+/* @font-face declarations are commented out until the Brand team
+   delivers the .woff2 files (Week 5). The system fallback stack
+   in --font-sans and --font-mono handles rendering in the meantime.
+   Uncomment and place files in public/fonts/ when ready.
+
 @font-face {
   font-family: "FT Kunst Grotesk";
   font-weight: 400;
@@ -76,6 +79,7 @@
   font-display: swap;
   src: url("/fonts/apercu-mono-pro-400.woff2") format("woff2");
 }
+*/
 
 /* ── A4/Letter canvas sizes (used in Template.tsx) ─────────── */
 .a4-portrait {

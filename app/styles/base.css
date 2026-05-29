@@ -1,119 +1,123 @@
 /* ============================================================
    Brand-It Base Styles — reset, body defaults, focus, selection
+   All element-level rules live in @layer base so they sit BELOW
+   @layer utilities in the cascade. Utility classes always win.
    ============================================================ */
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
 
-html {
-  font-size: 16px;
-  -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
-  tab-size: 4;
-}
-
-body {
-  font-family: var(--font-sans);
-  font-weight: 500;
-  letter-spacing: -0.03em;
-  color: var(--cf-text);
-  background-color: var(--cf-bg-page);
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* ── Headings ──────────────────────────────────────────────── */
-h1,
-h2 {
-  font-size: clamp(1.875rem, 4vw, 2.25rem);
-  font-weight: 500;
-  letter-spacing: -0.035em;
-  line-height: 1.15;
-}
-
-h3 {
-  font-size: clamp(1.5rem, 3vw, 1.875rem);
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
-}
-
-h4,
-h5,
-h6 {
-  font-size: 1.125rem;
-  font-weight: 500;
-  letter-spacing: normal;
-  line-height: 1.3;
-}
-
-/* ── Links ─────────────────────────────────────────────────── */
-a {
-  color: var(--cf-orange);
-  text-decoration: none;
-}
-
-a:hover {
-  color: var(--cf-orange-hover);
-}
-
-/* ── Form resets ───────────────────────────────────────────── */
-input,
-textarea,
-select,
-button {
-  font: inherit;
-  color: inherit;
-}
-
-button {
-  cursor: pointer;
-  border: none;
-  background: none;
-}
-
-/* ── Focus visible ─────────────────────────────────────────── */
-:focus-visible {
-  outline: none;
-  box-shadow: var(--shadow-focus);
-}
-
-/* ── Selection ─────────────────────────────────────────────── */
-::selection {
-  background-color: var(--cf-orange-light);
-  color: var(--cf-text);
-}
-
-/* ── Mono elements ─────────────────────────────────────────── */
-code,
-kbd,
-samp,
-pre {
-  font-family: var(--font-mono);
-  font-size: 0.875em;
-}
-
-/* ── Images ────────────────────────────────────────────────── */
-img,
-svg {
-  display: block;
-  max-width: 100%;
-}
-
-/* ── Scroll behaviour ──────────────────────────────────────── */
-@media (prefers-reduced-motion: no-preference) {
   html {
-    scroll-behavior: smooth;
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    tab-size: 4;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    color: var(--cf-text);
+    background-color: var(--cf-bg-page);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* ── Headings ──────────────────────────────────────────────── */
+  h1,
+  h2 {
+    font-size: clamp(1.875rem, 4vw, 2.25rem);
+    font-weight: 500;
+    letter-spacing: -0.035em;
+    line-height: 1.15;
+  }
+
+  h3 {
+    font-size: clamp(1.5rem, 3vw, 1.875rem);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  h4,
+  h5,
+  h6 {
+    font-size: 1.125rem;
+    font-weight: 500;
+    letter-spacing: normal;
+    line-height: 1.3;
+  }
+
+  /* ── Links ─────────────────────────────────────────────────── */
+  a {
+    color: var(--cf-orange);
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: var(--cf-orange-hover);
+  }
+
+  /* ── Form resets ───────────────────────────────────────────── */
+  input,
+  textarea,
+  select,
+  button {
+    font: inherit;
+    color: inherit;
+  }
+
+  /* Button base: cursor only. Do NOT set border/background here —
+     those are controlled entirely by Tailwind utility classes. */
+  button {
+    cursor: pointer;
+  }
+
+  /* ── Focus visible ─────────────────────────────────────────── */
+  :focus-visible {
+    outline: none;
+    box-shadow: var(--shadow-focus);
+  }
+
+  /* ── Selection ─────────────────────────────────────────────── */
+  ::selection {
+    background-color: var(--cf-orange-light);
+    color: var(--cf-text);
+  }
+
+  /* ── Mono elements ─────────────────────────────────────────── */
+  code,
+  kbd,
+  samp,
+  pre {
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+  }
+
+  /* ── Images ────────────────────────────────────────────────── */
+  img,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  /* ── Scroll behaviour ──────────────────────────────────────── */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
   }
 }
 
-/* ── Page layout helpers ───────────────────────────────────── */
+/* ── Page layout helpers (outside layer — intentionally above utilities) */
 .page-bg {
   min-height: 100dvh;
   background-color: var(--cf-bg-page);
