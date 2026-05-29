@@ -49,7 +49,7 @@
 
   /* ── Border radius ───────────────────────────────────────── */
   --radius-pill: 9999px;
-  --radius-card: 12px;
+  --radius-card: 4px;
   --radius-input: 8px;
   --radius-hero: 16px;
   --radius-bracket: 1.5px;
