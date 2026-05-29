@@ -29,10 +29,8 @@ A self-service web tool that lets Cloudflare channel partners produce co-branded
 
 ## Repository
 
-- **GitLab:** `https://gitlab.cfdata.org/tim.seiffert/brand-it`
 - **Branch policy (MVP phase):** push to `main` directly. Feature branches for previews only.
 - **Package manager:** `pnpm`
-- **Owner:** Tim Seiffert · tim.seiffert@cloudflare.com
 
 ---
 

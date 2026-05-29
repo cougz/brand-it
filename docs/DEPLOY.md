@@ -2,13 +2,6 @@
 
 ## Overview
 
-Brand-It mirrors to two remotes. `git push` (i.e. push to `origin`) writes to both simultaneously:
-
-| Remote | URL | Purpose |
-|---|---|---|
-| **GitLab** (`origin` fetch) | `git@gitlab.cfdata.org:tim.seiffert/brand-it.git` | Source of truth, internal |
-| **GitHub** (`origin` push + `github`) | `git@github.com:cougz/brand-it.git` | Workers Builds integration source |
-
 Two CI pipelines run on every push:
 
 | Pipeline | Source | Trigger | Purpose |
@@ -31,10 +24,9 @@ pnpm test                 # Vitest unit tests
 pnpm build                # Vite production build
 ```
 
-## Workers Builds setup (one-time, Tim only)
+## Workers Builds setup (one-time)
 
-1. Cloudflare dashboard → account `9c0e55ad8906a05169a1259400c71e5b`
-2. **Workers & Pages → Connect to Git → GitHub → Authorise → select `cougz/brand-it`**
+1. Cloudflare dashboard → **Workers & Pages → Connect to Git → GitHub → Authorise → select this repo**
 3. Build configuration:
    - Build command: `pnpm install && pnpm templates:compile && pnpm build`
    - Deploy command: `pnpm wrangler deploy`
@@ -43,13 +35,13 @@ pnpm build                # Vite production build
 
 After this, every push to `main` deploys automatically (<60s). Feature branches get preview URLs.
 
-> **Push workflow:** always use `git push` (which pushes to both GitLab and GitHub via the multi-push origin). Never push to `github` remote alone — GitLab must stay in sync.
+> **Push workflow:** always push to `main` via `git push`.
 
 ## Cloudflare Access (Week 2, before public access)
 
 1. Zero Trust → Access → Applications → Add → Self-hosted
 2. Application domain: `brand-it.<account>.workers.dev` (update when custom domain set)
-3. Policy: include `tim.seiffert@cloudflare.com` initially
+3. Policy: restrict to authorised users initially, then open up for pilot partners
 4. Auth method: One-time PIN via email
 
 ## Provisioned bindings

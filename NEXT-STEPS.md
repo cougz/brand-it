@@ -6,10 +6,8 @@ This document captures exactly where Brand-It stands at the moment scaffolding b
 
 ## Current State
 
-- Repo created at `https://gitlab.cfdata.org/tim.seiffert/brand-it`
-- Plan committed (PLAN.md)
+- Repo created and plan committed (PLAN.md)
 - No code yet — empty repo with `PLAN.md`, `README.md`, `NEXT-STEPS.md` only
-- Local clone authored as `Tim Seiffert <tim.seiffert@cloudflare.com>`
 - Push protocol: SSH, direct to `main`
 
 ---
@@ -18,11 +16,8 @@ This document captures exactly where Brand-It stands at the moment scaffolding b
 
 | Question | Answer |
 |---|---|
-| Repo | `https://gitlab.cfdata.org/tim.seiffert/brand-it` (single repo, SSH) |
 | Branch policy | Push to `main` directly during MVP |
-| Author identity | `Tim Seiffert <tim.seiffert@cloudflare.com>` |
 | Package manager | `pnpm` |
-| Cloudflare account ID | `39255306` |
 | LLM | Workers AI only — no Anthropic, no OpenAI, no partner-supplied keys |
 | Framework | TanStack Start (SSR on Workers) |
 | UI approach | Tailwind v4 + CF Workers design tokens, custom thin component layer — no third-party component library |
@@ -41,17 +36,17 @@ None blocking the scaffold. The scaffold can land without these; they unblock sp
 | Brief for the first PDF template (2–3 sentences + format/size + reference design) | Before Week 1 day 5 | Tim |
 | FT Kunst Grotesk + Apercu Mono Pro `.woff2` files | Before pilot (Week 5) | Brand team |
 | Cloudflare logo SVG variants | Before pilot (Week 5) | Brand team |
-| Three pilot-partner emails | Week 6 | Cara |
+| Three pilot-partner emails | Week 6 | Marketing stakeholder |
 
 ---
 
-## Cloudflare-Side Setup (Tim's actions)
+## Cloudflare-Side Setup (maintainer actions)
 
-Two things only Tim can do from the Cloudflare dashboard. Neither blocks the first commit — but step 1 must happen before Workers Builds can deploy, and step 2 before the app authenticates anyone.
+Two things only the repo maintainer can do from the Cloudflare dashboard. Neither blocks the first commit — but step 1 must happen before Workers Builds can deploy, and step 2 before the app authenticates anyone.
 
-### 1. Connect Workers Builds to the GitLab repo
+### 1. Connect Workers Builds to the GitHub repo
 
-Account `39255306` → **Workers & Pages → Connect to Git → GitLab → authorise → select `tim.seiffert/brand-it`**.
+Cloudflare dashboard → **Workers & Pages → Connect to Git → GitHub → authorise → select this repo**.
 
 Build configuration:
 - Build command: `pnpm install && pnpm build`
@@ -63,15 +58,13 @@ After this, every push to `main` deploys automatically. Feature branches get pre
 
 ### 2. Create the Cloudflare Access policy
 
-Account `39255306` → **Zero Trust → Access → Applications → Add → Self-hosted**.
+Cloudflare dashboard → **Zero Trust → Access → Applications → Add → Self-hosted**.
 
-- Application domain: TBD (likely `brand-it.workers.dev` initially, `brandit.cfdata.org` later)
-- Policy: include only `tim.seiffert@cloudflare.com` for now (open up later for pilot partners)
+- Application domain: TBD (likely `brand-it.workers.dev` initially, custom domain later)
+- Policy: restrict to internal users initially, then open up for pilot partners
 - Auth method: One-time PIN via email
 
-### 3. Provision bindings (Tim runs locally or grants API token)
-
-Tim can run these interactively after `pnpm wrangler login`:
+### 3. Provision bindings (run locally after `pnpm wrangler login`)
 
 ```bash
 pnpm wrangler d1 create brand-it-db
@@ -162,7 +155,7 @@ Every component renders in every state on the dev route below.
 2. `/_dev/components` — every UI primitive rendered in every state, visually on-brand
 3. `/_dev/templates/cf-one-partner-brief` — first template rendered with default values
 
-This is the visual baseline. Cara reviews it. Iteration on design fidelity happens here before any feature code lands.
+This is the visual baseline. Iteration on design fidelity happens here before any feature code lands.
 
 ---
 
@@ -184,6 +177,6 @@ When picking this up again:
 
 1. Read PLAN.md (full plan)
 2. Read this file (state + decisions + open questions)
-3. `cd ~/brand-it && git status` to confirm clean state
+  3. `cd <project-dir> && git status` to confirm clean state
 4. Start at the "Week 1 Deliverable" section above
 5. First commit on the new session should land the scaffold + design tokens + UI primitives + `/_dev/components`. That's the minimum viable artefact to validate the visual direction.

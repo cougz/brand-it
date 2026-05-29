@@ -1,7 +1,7 @@
 # Brand-It — MVP Build Plan
 
-**Repo:** `https://gitlab.cfdata.org/tim.seiffert/brand-it` (single repo, SSH push, `main` is the trunk)
-**Owners:** Cara Maguire (Global Partner Marketing) · Tim Seiffert (Solutions Engineering — technical lead)
+**Repo:** `https://github.com/cougz/brand-it` (single repo, SSH push, `main` is the trunk)
+**Owners:** Cloudflare Partner Marketing · Cloudflare Solutions Engineering
 **Status:** MVP scope locked
 **Platform:** Cloudflare Developer Platform — end to end. No third-party services in the runtime path.
 **Deploys:** Cloudflare Workers Builds Integration. Every push to `main` builds and deploys automatically; feature branches get preview URLs.
@@ -862,7 +862,7 @@ A separate visual regression suite for the app shell (library, brand-kit, editor
 
 ## 15a. Deployment Workflow — GitLab + Workers Builds
 
-The repo is `https://gitlab.cfdata.org/tim.seiffert/brand-it`. Two automated pipelines run on every push:
+Two automated pipelines run on every push:
 
 | Pipeline | Trigger | Purpose |
 |---|---|---|
@@ -871,7 +871,7 @@ The repo is `https://gitlab.cfdata.org/tim.seiffert/brand-it`. Two automated pip
 
 ### Workers Builds setup (one-time, manual)
 
-1. In the Cloudflare dashboard, account `39255306`: **Workers & Pages → Connect to Git → GitLab → authorise → select `tim.seiffert/brand-it`**.
+1. In the Cloudflare dashboard: **Workers & Pages → Connect to Git → GitHub → authorise → select this repo**.
 2. Build configuration:
    - Build command: `pnpm install && pnpm build`
    - Deploy command: `pnpm wrangler deploy`
@@ -886,7 +886,7 @@ local edit → git push origin main → Workers Builds deploys → live in <60s
                                   → GitLab CI runs in parallel → fails MR if quality gate breaks
 ```
 
-Feature branches get preview URLs at `<branch>-brand-it.<account>.workers.dev`, useful for showing Cara work-in-progress without merging.
+Feature branches get preview URLs at `<branch>-brand-it.<account>.workers.dev`, useful for sharing work-in-progress without merging.
 
 ### Local dev loop
 
