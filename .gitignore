@@ -2,6 +2,7 @@ node_modules
 .wrangler
 .output
 dist
+public/fonts/*.woff2
 *.local
 .env
 .env.*

@@ -6,8 +6,9 @@
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
-    "cf:deploy": "wrangler deploy dist/server/server.js --no-bundle",
-    "build:deploy": "pnpm templates:compile && pnpm build && pnpm cf:deploy",
+    "bundle": "esbuild dist/server/server.js --bundle --outfile=dist/worker.js --format=esm --platform=browser --conditions=worker --external:node:* --external:util --external:crypto --external:async_hooks --external:stream --external:buffer --external:events --external:path --external:fs --external:os --external:url --log-level=warning",
+    "cf:deploy": "wrangler deploy dist/worker.js --no-bundle",
+    "build:deploy": "pnpm templates:compile && pnpm build && pnpm bundle && pnpm cf:deploy",
     "typecheck": "tsc --noEmit",
     "lint": "biome check .",
     "lint:fix": "biome check --write .",
@@ -35,18 +36,12 @@
     "@types/node": "^25.9.1",
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.0",
+    "esbuild": "^0.28.0",
     "gray-matter": "^4.0.3",
     "tsx": "^4.19.4",
     "typescript": "^5.8.3",
     "vite": "^6.3.5",
     "vitest": "^3.2.2",
     "wrangler": "^4.95.0"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "esbuild",
-      "sharp",
-      "workerd"
-    ]
   }
 }
