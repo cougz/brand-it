@@ -33,7 +33,7 @@ None blocking the scaffold. The scaffold can land without these; they unblock sp
 
 | Question | When needed | Owner |
 |---|---|---|
-| Brief for the first PDF template (2–3 sentences + format/size + reference design) | Before Week 1 day 5 | Tim |
+| Brief for the first PDF template (2–3 sentences + format/size + reference design) | Before Week 1 day 5 | Maintainer |
 | FT Kunst Grotesk + Apercu Mono Pro `.woff2` files | Before pilot (Week 5) | Brand team |
 | Cloudflare logo SVG variants | Before pilot (Week 5) | Brand team |
 | Three pilot-partner emails | Week 6 | Marketing stakeholder |
@@ -128,7 +128,7 @@ Every component renders in every state on the dev route below.
 
 ### First template
 
-- `templates/cf-one-partner-brief/content.md` — placeholder content until Tim provides the real brief
+- `templates/cf-one-partner-brief/content.md` — placeholder content until the real brief is confirmed
 - `templates/cf-one-partner-brief/Template.tsx` — hand-authored A4 portrait one-pager using CF Workers design tokens
 - `templates/cf-one-partner-brief/meta.json`
 - `templates/cf-one-partner-brief/thumbnail.png`

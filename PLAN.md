@@ -1,6 +1,6 @@
 # Brand-It — MVP Build Plan
 
-**Repo:** `https://github.com/cougz/brand-it` (single repo, SSH push, `main` is the trunk)
+**Repo:** single repo, SSH push, `main` is the trunk
 **Owners:** Cloudflare Partner Marketing · Cloudflare Solutions Engineering
 **Status:** MVP scope locked
 **Platform:** Cloudflare Developer Platform — end to end. No third-party services in the runtime path.
