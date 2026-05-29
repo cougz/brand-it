@@ -96,38 +96,80 @@ function HomePage() {
         </p>
       </div>
 
-      {/* Live now */}
-      <section className="space-y-4">
-        <h3>What's live now</h3>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-          <Link to="/components" className="block">
-            <Card interactive padding="md" className="h-full">
-              <div className="flex flex-col gap-2">
-                <p className="font-medium text-cf-text">Component Gallery</p>
-                <p className="text-sm text-cf-text-muted">
-                  Every UI primitive in every state. The visual baseline
-                  for the CF Workers design system.
-                </p>
-                <p className="font-mono text-xs text-cf-orange mt-auto pt-2">
-                  /components →
-                </p>
-              </div>
-            </Card>
-          </Link>
-          <Link to="/templates/$slug" params={{ slug: "cf-one-partner-brief" }} className="block">
-            <Card interactive padding="md" className="h-full">
-              <div className="flex flex-col gap-2">
-                <p className="font-medium text-cf-text">First Template Preview</p>
-                <p className="text-sm text-cf-text-muted">
-                  Cloudflare One Partner Brief — A4 portrait one-pager
-                  rendered with default brand values.
-                </p>
-                <p className="font-mono text-xs text-cf-orange mt-auto pt-2">
-                  /templates/cf-one-partner-brief →
-                </p>
-              </div>
-            </Card>
-          </Link>
+      {/* Route directory */}
+      <section className="space-y-3">
+        <h3>Available routes</h3>
+        <p className="text-sm text-cf-text-muted">
+          Everything currently configured and reachable. Greyed-out routes
+          are planned but not yet implemented.
+        </p>
+
+        <div className="rounded-card border border-cf-border overflow-hidden">
+          {/* Table header */}
+          <div className="grid grid-cols-[180px_1fr_120px] gap-4 px-5 py-2.5 bg-cf-bg-300 border-b border-cf-border">
+            <span className="font-mono text-xs uppercase tracking-widest text-cf-text-subtle">Path</span>
+            <span className="font-mono text-xs uppercase tracking-widest text-cf-text-subtle">Description</span>
+            <span className="font-mono text-xs uppercase tracking-widest text-cf-text-subtle">Status</span>
+          </div>
+
+          {/* Live routes */}
+          {[
+            {
+              path: "/",
+              desc: "This page — project status & route index",
+              status: "live",
+              to: "/" as const,
+              params: undefined,
+            },
+            {
+              path: "/components",
+              desc: "Dev: UI component gallery — every primitive in every state",
+              status: "live",
+              to: "/components" as const,
+              params: undefined,
+            },
+            {
+              path: "/templates/cf-one-partner-brief",
+              desc: "Dev: A4 Cloudflare One Partner Brief rendered with default brand values",
+              status: "live",
+              to: "/templates/$slug" as const,
+              params: { slug: "cf-one-partner-brief" },
+            },
+          ].map((r) => (
+            <Link
+              key={r.path}
+              to={r.to}
+              params={r.params as never}
+              className="grid grid-cols-[180px_1fr_120px] gap-4 px-5 py-3.5 border-b border-cf-border-light hover:bg-cf-bg-300 transition-colors duration-fast group"
+            >
+              <span className="font-mono text-sm text-cf-orange group-hover:underline truncate">{r.path}</span>
+              <span className="text-sm text-cf-text-muted">{r.desc}</span>
+              <span className="inline-flex items-center">
+                <span className="font-mono text-xs bg-cf-orange/10 text-cf-orange rounded-pill px-2 py-0.5">live</span>
+              </span>
+            </Link>
+          ))}
+
+          {/* Planned routes — dimmed */}
+          {[
+            { path: "/library", desc: "Asset catalog — pick a template to customise", week: 2 },
+            { path: "/brand-kit", desc: "Brand kit CRUD — logo, colours, boilerplate, contact", week: 2 },
+            { path: "/editor/:id", desc: "Form-driven editor with live preview + AI chat", week: 2 },
+            { path: "/api/ai/tone-rewrite", desc: "POST — rewrite a field in a given tone", week: 3 },
+            { path: "/api/ai/translate", desc: "POST — translate all text fields (EN → DE/FR/ES)", week: 3 },
+            { path: "/api/exports/:id", desc: "GET — download a completed PDF/PNG export", week: 4 },
+          ].map((r) => (
+            <div
+              key={r.path}
+              className="grid grid-cols-[180px_1fr_120px] gap-4 px-5 py-3.5 border-b border-cf-border-light last:border-b-0 opacity-40"
+            >
+              <span className="font-mono text-sm text-cf-text-muted truncate">{r.path}</span>
+              <span className="text-sm text-cf-text-muted">{r.desc}</span>
+              <span className="inline-flex items-center">
+                <span className="font-mono text-xs bg-cf-border text-cf-text-muted rounded-pill px-2 py-0.5">week {r.week}</span>
+              </span>
+            </div>
+          ))}
         </div>
       </section>
 
